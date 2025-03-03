@@ -9,4 +9,4 @@ const verifyToken = (token) => {
   return jwt.verify(token, process.env.JWT_SECRET);
 }; //Mengecek token JWT yang dikirim pengguna.
 
-module.exports = { generateToken, verifyToken }; //mengekspor fungsi yang menghasilkan dan memverifikasi token agar token dapat digunakan di file lain dalam aplikasi Node.js.
+module.exports = { generateToken, verifyToken }; //Mengekspor fungsi yang menghasilkan dan memverifikasi token agar token dapat digunakan di file lain dalam aplikasi Node.js.
