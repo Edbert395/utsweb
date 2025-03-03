@@ -1,7 +1,7 @@
-const Task = require("../models/task");
+const Task = require("../models/task"); //Untuk berinteraksi dengan database dengan melakukan tugas seperti membuat, membaca, memperbarui, dan menghapus.
 
-const taskController = {
-  createTask: async (req, res) => {
+const taskController = { //Objek yang mencakup berbagai fungsi (metode) yang digunakan untuk menangani berbagai operasi tugas.
+  createTask: async (req, res) => { //Tugas baru.
     const { title, category, deadline, status } = req.body;
     const userId = req.user.id;
     try {
@@ -12,7 +12,7 @@ const taskController = {
         res.status(500).json({ message: "Task creation failed" });
     }
   },
-  getTasks: async (req, res) => {
+  getTasks: async (req, res) => { //Memperoleh semua tugas milik pengguna.
     const userId = req.user.id;
     try {
       const tasks = await Task.findAllByUserId(userId);
@@ -21,7 +21,7 @@ const taskController = {
       res.status(500).json({ message: "Failed to fetch tasks" });
     }
   },
-  updateTask: async (req, res) => {
+  updateTask: async (req, res) => { //Mengubah tugas.
     const { id } = req.params;
     const { title, category, deadline, status } = req.body;
     try {
@@ -35,7 +35,7 @@ const taskController = {
       res.status(500).json({ message: "Task update failed" });
     }
   },
-  deleteTask: async (req, res) => {
+  deleteTask: async (req, res) => { //Menghapus Tugas.
     const { id } = req.params;
     try {
       await Task.delete(id);
@@ -46,4 +46,4 @@ const taskController = {
   },
 };
 
-module.exports = taskController;
+module.exports = taskController; //Mengekspor taskController untuk digunakan dalam rute atau file aplikasi lainnya.

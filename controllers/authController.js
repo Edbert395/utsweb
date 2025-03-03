@@ -1,9 +1,9 @@
-const User = require("../models/user");
-const { generateToken } = require("../config/auth");
-const bcrypt = require("bcryptjs");
+const User = require("../models/user"); //Mengimpor model pengguna dari folder models/user; folder ini mungkin memiliki kemampuan untuk menyimpan dan mengambil data pengguna.
+const { generateToken } = require("../config/auth"); //Untuk membuat token autentikasi, impor fungsi dari config/auth, mungkin menggunakan JWT (JSON Web Token).
+const bcrypt = require("bcryptjs"); //Library untuk menghahash kata sandi dan membandingkannya dengan hash yang tersimpan.
 
 const authController = {
-  register: async (req, res) => {
+  register: async (req, res) => { //Untuk registrasi pengguna baru.
     const { username, password } = req.body;
     try {
       const userId = await User.create(username, password);
@@ -13,7 +13,7 @@ const authController = {
       res.status(500).json({ message: "Registration failed" });
     }
   },
-  login: async (req, res) => {
+  login: async (req, res) => { //Untuk masuk sebagai pengguna.
     const { username, password } = req.body;
     try {
       const user = await User.findByUsername(username);
@@ -31,4 +31,4 @@ const authController = {
   },
 };
 
-module.exports = authController;
+module.exports = authController; //Mengekspor authController agar dapat digunakan dalam file lain (misalnya dalam route autentikasi).
